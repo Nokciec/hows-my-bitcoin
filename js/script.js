@@ -55,6 +55,7 @@ function prepareHomePage()
             bitcoinCurrentPrice = parseFloat(bitcoinCurrentPrice);
             bitcoinHistoryPrice = parseFloat(bitcoinHistoryPrice);
             var percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
+            percentageChange = Math.round(percentageChange * 100) / 100;
             var realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
 
             console.log("BTC current price:       " + bitcoinCurrentPrice);
