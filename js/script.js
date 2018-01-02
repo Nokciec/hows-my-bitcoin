@@ -105,20 +105,15 @@ $(document).ready(function(){
         closeOnSelect: true, // Close upon selecting a date,
         format: 'yyyy-mm-dd',
       });
-      
-
-    $('#startDate').change(function(){
-        //tutaj będą rzeczy
-       alert("omg");
-    });
 
 
     if( localStorage.getItem("dataIsSaved") == "saved" )
     {
         prepareHomePage();
     }else{
-        alert("PODAJ DANE EJ");
+        $("#investmentDataForm").removeClass("hide");
     }
+
 
     $("#getHistory").submit(function(event){
         event.preventDefault();
@@ -128,7 +123,13 @@ $(document).ready(function(){
 
     $( "#investmentFormSubmit" ).click(function() {
 
+        $("#investmentDataForm").addClass("hide");
         saveNewInvestmentData($("#startDate").val(), parseFloat($("#startCashBTC").val()));
         prepareHomePage();
+                 $('.tap-target').tapTarget('open');
+    });
+
+    $("#investmentDataEditButton").click(function(){
+        $("#investmentDataForm").removeClass("hide");
     });
 });
