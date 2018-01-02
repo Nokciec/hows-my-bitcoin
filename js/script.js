@@ -52,7 +52,7 @@ function prepareHomePage()
     getBitcoinCurrentPrice(function(bitcoinCurrentPrice){
         getBitcoinHistoryPrice(startDate, function(bitcoinHistoryPrice){
 
-            var percentageChange = bitcoinHistoryPrice - bitcoinCurrentPrice / bitcoinHistoryPrice;
+            var percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
             var realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
 
             console.log("BTC current price:       " + bitcoinCurrentPrice);
