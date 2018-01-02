@@ -122,5 +122,6 @@ $(document).ready(function(){
 
         saveNewInvestmentData($("#startDate").val(), parseFloat($("#startCashBTC").val()));
         prepareHomePage();
+        $('.tap-target').tapTarget('open');
     });
 });
