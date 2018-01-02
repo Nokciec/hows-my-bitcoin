@@ -69,11 +69,11 @@ function prepareHomePage()
 
             //filling the website
             $("#investmentDate").html(startDate);
-            $("#investedCashHistory").html(startCashBTC);
-            $("#bitcoinHistoryPrice").html(bitcoinHistoryPrice);
-            $("#bitcoinCurrentPrice").html(bitcoinCurrentPrice);
-            $("#investedCashBTC").html(startCashBTC);
-            $("#investedCashCurrent").html(startCashBTC * bitcoinCurrentPrice);
+            $("#investedCashHistory").html(startCashBTC+ " BTC");
+            $("#bitcoinHistoryPrice").html(bitcoinHistoryPrice+ " USD");
+            $("#bitcoinCurrentPrice").html(bitcoinCurrentPrice + " USD");
+            $("#investedCashBTC").html(startCashBTC + " BTC");
+            $("#investedCashCurrent").html(startCashBTC * bitcoinCurrentPrice + " USD");
             $("#percentageChange").html(percentageChange + "%");
             $("#realCashValueChange").html(realCashValueChange + " USD");
 
