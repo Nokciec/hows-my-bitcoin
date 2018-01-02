@@ -23,7 +23,6 @@ function getBitcoinHistoryPrice(date, callback){
           {
             //console.log("price for " + date + " "+ response.bpi[key]);
             callback(response.bpi[key]);
-            break;
           }
       })
       .fail(function() {
@@ -45,13 +44,6 @@ function getBitcoinCurrentPrice(callback)
       })
 }
 
-function round2(number)
-{
-  number = Math.round(number * 100) / 100;
-  return number;
-}
-
-
 function prepareHomePage()
 {
     var startDate = localStorage.getItem('startDate');
@@ -61,30 +53,29 @@ function prepareHomePage()
         getBitcoinHistoryPrice(startDate, function(bitcoinHistoryPrice){
 
             bitcoinCurrentPrice = parseFloat(bitcoinCurrentPrice);
-            var bitcoinCurrentPrice = round2(bitcoinCurrentPrice);
             bitcoinHistoryPrice = parseFloat(bitcoinHistoryPrice);
-            var bitcoinHistoryPrice = round2(bitcoinHistoryPrice);
-            percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
-            var percentageChange = round2(percentageChange);
-            realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
-            var realCashValueChange = round2(realCashValueChange);
-
+            var percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
+            percentageChange = Math.round(percentageChange * 100) / 100;
+            var realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
+            realCashValueChange = Math.round(realCashValueChange * 100) / 100;
 
             console.log("BTC current price:       " + bitcoinCurrentPrice);
             console.log("BTC price at " + startDate + ": " + bitcoinHistoryPrice);
             console.log("BTC price change:        " + percentageChange + "%");
             console.log("investment in BTC:       "+ startCashBTC);
+            //Baczek, z tej linijki nizej nie korzystamy, co z nia robimy, to jest to co ja chcialam ale Ty nie xd
             console.log("investment in USD:       " + startCashBTC * bitcoinHistoryPrice);
             console.log("currently in USD:        " + startCashBTC * bitcoinCurrentPrice);
             console.log("You have gained:         " + realCashValueChange + " USD");
 
+
             //filling the website
             $("#investmentDate").html(startDate);
             $("#investedCashHistory").html(startCashBTC+ " BTC");
-            $("#bitcoinHistoryPrice").html(bitcoinHistoryPrice+ " USD");
-            $("#bitcoinCurrentPrice").html(bitcoinCurrentPrice + " USD");
+            $("#bitcoinHistoryPrice").html(Math.round(bitcoinHistoryPrice * 100) / 100 + " USD");
+            $("#bitcoinCurrentPrice").html(Math.round(bitcoinCurrentPrice * 100) / 100 + " USD");
             $("#investedCashBTC").html(startCashBTC + " BTC");
-            $("#investedCashCurrent").html(startCashBTC * bitcoinCurrentPrice + " USD");
+            $("#investedCashCurrent").html(Math.round(startCashBTC * bitcoinCurrentPrice * 100) / 100 + " USD");
             $("#percentageChange").html(percentageChange + "%");
             $("#realCashValueChange").html(realCashValueChange + " USD");
 
@@ -120,7 +111,7 @@ $(document).ready(function(){
     {
         prepareHomePage();
     }else{
-        $("#investmentDataForm").modal('open');
+        alert("PODAJ DANE EJ");
     }
 
     $("#getHistory").submit(function(event){
@@ -133,6 +124,5 @@ $(document).ready(function(){
 
         saveNewInvestmentData($("#startDate").val(), parseFloat($("#startCashBTC").val()));
         prepareHomePage();
-        $('.tap-target').tapTarget('open');
     });
 });
