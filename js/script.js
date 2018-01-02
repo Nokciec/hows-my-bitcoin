@@ -61,16 +61,13 @@ function prepareHomePage()
         getBitcoinHistoryPrice(startDate, function(bitcoinHistoryPrice){
 
             bitcoinCurrentPrice = parseFloat(bitcoinCurrentPrice);
+            var bitcoinCurrentPrice = round2(bitcoinCurrentPrice);
             bitcoinHistoryPrice = parseFloat(bitcoinHistoryPrice);
-            var percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
-            percentageChange = round2(percentageChange);
-            var realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
-            realCashValueChange = round2(realCashValueChange);
-            var bitcoinHistoryPrice;
-            bitcoinHistoryPrice = round2(bitcoinHistoryPrice);
-            var bitcoinCurrentPrice;
-            bitcoinCurrentPrice = round2(bitcoinCurrentPrice);
-            
+            var bitcoinHistoryPrice = round2(bitcoinHistoryPrice);
+            percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
+            var percentageChange = round2(percentageChange);
+            realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
+            var realCashValueChange = round2(realCashValueChange);
 
 
             console.log("BTC current price:       " + bitcoinCurrentPrice);
