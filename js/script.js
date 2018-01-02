@@ -44,6 +44,13 @@ function getBitcoinCurrentPrice(callback)
       })
 }
 
+function round2(number)
+{
+  number = Math.round(number * 100) / 100;
+  return number;
+}
+
+
 function prepareHomePage()
 {
     var startDate = localStorage.getItem('startDate');
@@ -55,9 +62,15 @@ function prepareHomePage()
             bitcoinCurrentPrice = parseFloat(bitcoinCurrentPrice);
             bitcoinHistoryPrice = parseFloat(bitcoinHistoryPrice);
             var percentageChange = (bitcoinCurrentPrice / bitcoinHistoryPrice - 1 ) * 100;
-            percentageChange = Math.round(percentageChange * 100) / 100;
+            percentageChange = round2(percentageChange);
             var realCashValueChange = (startCashBTC * bitcoinCurrentPrice) -  (startCashBTC * bitcoinHistoryPrice);
-            realCashValueChange = Math.round(realCashValueChange * 100) / 100;
+            realCashValueChange = round2(realCashValueChange);
+            var bitcoinHistoryPrice;
+            bitcoinHistoryPrice = round2(bitcoinHistoryPrice);
+            var bitcoinCurrentPrice;
+            bitcoinCurrentPrice = round2(bitcoinCurrentPrice);
+            
+
 
             console.log("BTC current price:       " + bitcoinCurrentPrice);
             console.log("BTC price at " + startDate + ": " + bitcoinHistoryPrice);
@@ -66,7 +79,6 @@ function prepareHomePage()
             console.log("investment in USD:       " + startCashBTC * bitcoinHistoryPrice);
             console.log("currently in USD:        " + startCashBTC * bitcoinCurrentPrice);
             console.log("You have gained:         " + realCashValueChange + " USD");
-
 
             //filling the website
             $("#investmentDate").html(startDate);
