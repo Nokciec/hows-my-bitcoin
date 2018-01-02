@@ -20,13 +20,21 @@
 
        <!-- Modal Trigger -->
        <div class="fixed-action-btn">
-          <a class="btn-floating btn-large red modal-trigger" href="#modal1">
+          <a class="btn-floating btn-large red modal-trigger" id="investmentDataEditButton" href="#investmentDataForm">
             <i class="large material-icons">mode_edit</i>
           </a>
         </div>
 
+        <!-- Tap Target Structure -->
+         <div class="tap-target" data-activates="investmentDataEditButton">
+           <div class="tap-target-content">
+             <h5>Edycja danych</h5>
+             <p>Kliknij tutaj, żeby edytować wpisane dane</p>
+           </div>
+         </div>
+
        <!-- Modal Structure -->
-       <div id="modal1" class="modal">
+       <div id="investmentDataForm" class="modal">
          <div class="modal-content">
            <h4>Podaj dane:</h4>
            <p>
