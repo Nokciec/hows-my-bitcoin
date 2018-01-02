@@ -23,6 +23,7 @@ function getBitcoinHistoryPrice(date, callback){
           {
             //console.log("price for " + date + " "+ response.bpi[key]);
             callback(response.bpi[key]);
+            break;
           }
       })
       .fail(function() {
@@ -110,7 +111,7 @@ $(document).ready(function(){
     {
         prepareHomePage();
     }else{
-        alert("PODAJ DANE EJ");
+        $("#investmentDataForm").modal('open');
     }
 
     $("#getHistory").submit(function(event){
