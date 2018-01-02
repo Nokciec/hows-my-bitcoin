@@ -105,10 +105,11 @@ $(document).ready(function(){
         closeOnSelect: true, // Close upon selecting a date,
         format: 'yyyy-mm-dd',
       });
-
+      
 
     $('#startDate').change(function(){
-       alert("omg")
+        //tutaj będą rzeczy
+       alert("omg");
     });
 
 
